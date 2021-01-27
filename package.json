@@ -1,0 +1,68 @@
+{
+  "name": "yearly-film-statistics",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/edw-zhao/yearly-film-statistics",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@fullcalendar/core": "^5.4.0",
+    "@fullcalendar/daygrid": "^5.4.0",
+    "@fullcalendar/interaction": "^5.4.0",
+    "@fullcalendar/vue": "^5.4.0",
+    "@popperjs/core": "^2.5.4",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.21.0",
+    "chart.js": "^2.9.4",
+    "chartjs-plugin-labels": "^1.1.0",
+    "core-js": "^3.6.5",
+    "eslint": "^7.14.0",
+    "lint": "^0.7.0",
+    "v-calendar": "^2.1.1",
+    "vue": "^2.6.11",
+    "vue-axios": "^3.2.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-sweetalert2": "^4.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-no-unused-vars-rest": "^1.0.6",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-gh-pages": "^1.19.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "no-unused-vars": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
