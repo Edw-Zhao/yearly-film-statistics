@@ -54,7 +54,7 @@ export default {
       calendarOptions: {
         plugins: [dayGridPlugin],
         initialView: "dayGridMonth",
-        initialDate: new Date(`01-01-${this.yearInput}`),
+        initialDate: new Date(`${this.yearInput}-01-02`),
         fixedWeekCount: false,
         dayMaxEventRows: true,
         events: [],
