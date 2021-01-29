@@ -1,6 +1,4 @@
-# <a href="https://edw-zhao.github.io/yearly-film-statistics/"   
-   target="_blank"
-   rel="noopener noreferrer">
+# <a href="https://edw-zhao.github.io/yearly-film-statistics/" target="_blank" rel="noopener noreferrer">
     PREVIEW PAGE
    </a>
 
