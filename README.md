@@ -1,24 +1,17 @@
-# filmschedule
+# <a href="https://edw-zhao.github.io/yearly-film-statistics/"   
+   target="_blank"
+   rel="noopener noreferrer">
+    PREVIEW PAGE
+   </a>
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ This is a simple API project that displays statistics of theatrical film
+ releases for the desired input year. This was a learning experience for
+ me to simultaneously learn JSON data handling with Vue.js as a new
+ framework to reach my aspirations of a career in front-end development.
+ The data presented are borrowed from
+   <a
+    href="https://developers.themoviedb.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+   >The Movie Database.
+   </a>
