@@ -1,3 +1,5 @@
+* WIP for iOS and Mac Sarfari compatibility
+
 # <a href="https://edw-zhao.github.io/yearly-film-statistics/"> PREVIEW PAGE </a>
 
 # About This Project / Me
