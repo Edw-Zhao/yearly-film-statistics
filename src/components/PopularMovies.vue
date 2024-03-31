@@ -2,28 +2,19 @@
   <div class="component-wrapper">
     <h1 class="header">Notable Movies</h1>
     <p class="note">
-      All films presented below are the most popular movies for this year, with
-      the criteria of >5000 votes and are sorted by their rating average:
+      All films presented below are the most popular movies for this year, with the criteria of >2000 votes and are sorted by their rating
+      average:
     </p>
     <div class="top-ten-wrapper" v-if="gotimages">
       <template v-for="n in toptendata.length">
         <div class="top-ten-stats" v-bind:key="n">
           <img :src="imgsrc[n - 1]" />
           <div class="details">
-            <p>
-              <strong style="color: #c40a2f"> Title: </strong
-              >{{ toptendata[n - 1].title }}.
-            </p>
-            <p>
-              <strong style="color: #c40a2f">Description: </strong
-              >{{ toptendata[n - 1].overview }}
-            </p>
+            <p><strong style="color: #c40a2f"> Title: </strong>{{ toptendata[n - 1].title }}.</p>
+            <p><strong style="color: #c40a2f">Description: </strong>{{ toptendata[n - 1].overview }}</p>
             <p>
               <strong style="color: #c40a2f">Genre(s): </strong
-              ><span
-                v-for="i in toptendata[n - 1].genre_ids.length"
-                v-bind:key="'genre' + i"
-              >
+              ><span v-for="i in toptendata[n - 1].genre_ids.length" v-bind:key="'genre' + i">
                 {{
                   genreArray[n - 1].length === 1
                     ? genreArray[n - 1][i - 1] + "."
@@ -35,18 +26,9 @@
                 }}
               </span>
             </p>
-            <p>
-              <strong style="color: #c40a2f">Rating Average: </strong
-              >{{ toptendata[n - 1].vote_average }}/10.
-            </p>
-            <p>
-              <strong style="color: #c40a2f"> Rating Count: </strong
-              >{{ toptendata[n - 1].vote_count }}.
-            </p>
-            <p>
-              <strong style="color: #c40a2f">Release Date: </strong
-              >{{ toptendata[n - 1].release_date }}.
-            </p>
+            <p><strong style="color: #c40a2f">Rating Average: </strong>{{ toptendata[n - 1].vote_average }}/10.</p>
+            <p><strong style="color: #c40a2f"> Rating Count: </strong>{{ toptendata[n - 1].vote_count }}.</p>
+            <p><strong style="color: #c40a2f">Release Date: </strong>{{ toptendata[n - 1].release_date }}.</p>
           </div>
         </div>
       </template>
@@ -61,28 +43,7 @@ export default {
     return {
       imgsrc: [""],
       gotimages: false,
-      genreArray: [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-      ],
+      genreArray: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
     };
   },
   mounted() {
@@ -149,8 +110,7 @@ export default {
     }
 
     for (let i = 0; i < this.toptendata.length; i++) {
-      this.imgsrc[i] =
-        "https://image.tmdb.org/t/p/w500" + this.toptendata[i].poster_path;
+      this.imgsrc[i] = "https://image.tmdb.org/t/p/w500" + this.toptendata[i].poster_path;
     }
     this.gotimages = true;
   },

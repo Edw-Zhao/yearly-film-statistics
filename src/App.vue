@@ -3,9 +3,10 @@
     <div
       class="year-input-wrapper"
       v-bind:style="[
-        componentKey > 0
+        gotFilmResults
           ? {
               'padding-top': '40px',
+              'padding-bottom': '40px',
             }
           : null,
       ]"
@@ -19,28 +20,23 @@
           v-model="readYearInput"
           placeholder="Enter Year"
           @keyup.enter="
-            if (readYearInput >= 1900 && readYearInput <= 2020) {
+            if (readYearInput >= 1900 && readYearInput <= new Date().getFullYear()) {
               yearInput = readYearInput;
-              componentKey++;
+              gotFilmResults = false;
               wrongInput = false;
             } else {
               wrongInput = true;
             }
           "
         />
-        <div v-if="wrongInput" class="alert">
-          Enter a valid year: (1900 - {{ new Date().getFullYear() }})
-        </div>
+        <div v-if="wrongInput" class="alert">Enter a valid year: (1900 - {{ new Date().getFullYear() }})</div>
         <div v-else class="empty-space"></div>
         <button
           class="submit-year"
           v-on:click="
-            if (
-              readYearInput >= 1900 &&
-              readYearInput <= new Date().getFullYear()
-            ) {
+            if (readYearInput >= 1900 && readYearInput <= new Date().getFullYear()) {
               yearInput = readYearInput;
-              componentKey++;
+              gotFilmResults = false;
               wrongInput = false;
             } else {
               wrongInput = true;
@@ -123,57 +119,44 @@
     </div>
     <ApiFetcher
       v-bind:yearInput="yearInput"
-      :key="componentKey"
-      v-if="yearInput !== 2"
+      v-bind:gotFilmResults="gotFilmResults"
+      v-if="yearInput"
+      @update-gotFilmResults="handleUpdateGotFilmResults"
     />
     <div
-      :key="componentKey"
       class="info"
       v-bind:style="[
-        componentKey > 0
+        gotFilmResults
           ? {
               'background-image': 'none',
-              animation: 'transition 3.5s ease-in-out',
               'background-color': 'rgb(0, 0, 0)',
               color: 'white',
             }
           : null,
       ]"
     >
+      <p v-if="yearInput && !gotFilmResults" class="description loading">
+        <span class="loader"></span>
+        Loading... This will take approximately 10 seconds.
+      </p>
       <p class="description">
-        This is a simple API project that displays statistics of theatrical film
-        releases for the desired input year. This was a learning experience for
-        me to simultaneously learn JSON data handling with Vue.js as a new
-        framework to reach my aspirations of a career in front-end development.
-        The data presented are borrowed from
-        <a
-          href="https://developers.themoviedb.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >The Movie Database.</a
-        >
+        This is a simple API project that displays statistics of theatrical film releases for the desired input year for the first 10000
+        movies sorted by descending popularity due to changes to the public API limits. The data presented are borrowed from
+        <a href="https://developers.themoviedb.org/" target="_blank" rel="noopener noreferrer">The Movie Database.</a>
+      </p>
+      <p class="description">
+        This was a learning experience for me to simultaneously learn JSON data handling with Vue.js as a new framework to reach my
+        aspirations of a career in front-end development.
       </p>
       <div class="contact-details">
-        <a
-          href="https://github.com/Edw-Zhao"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://github.com/Edw-Zhao" target="_blank" rel="noopener noreferrer">
           <font-awesome-icon :icon="['fab', 'github-square']" class="icon" />
         </a>
-        <a
-          href="https://www.linkedin.com/in/edward-lu-zhao/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://www.linkedin.com/in/edward-lu-zhao/" target="_blank" rel="noopener noreferrer">
           <font-awesome-icon :icon="['fab', 'linkedin']" class="icon" />
         </a>
 
-        <font-awesome-icon
-          icon="envelope-square"
-          class="icon"
-          v-on:click="showEmail = true"
-        />
+        <font-awesome-icon icon="envelope-square" class="icon" v-on:click="showEmail = true" />
       </div>
       <p class="email" v-if="showEmail">Edward.Zhao@Dal.ca</p>
     </div>
@@ -190,11 +173,16 @@ export default {
   data() {
     return {
       readYearInput: "",
-      yearInput: 2,
-      componentKey: 0,
+      yearInput: 0,
       wrongInput: false,
       showEmail: false,
+      gotFilmResults: false,
     };
+  },
+  methods: {
+    handleUpdateGotFilmResults(gotFilmResults) {
+      this.gotFilmResults = gotFilmResults;
+    },
   },
 };
 </script>
@@ -234,7 +222,6 @@ body {
   width: 100%;
   display: flex;
   padding-top: 150px;
-  padding-bottom: 50px;
   background-image: linear-gradient(white, rgb(236, 236, 236));
 }
 
@@ -323,7 +310,7 @@ input[type="number"] {
   text-align: center;
   width: 100%;
   font-size: 20px;
-  padding-top: 40px;
+  padding-top: 20px;
   background-image: linear-gradient(rgb(236, 236, 236), rgb(0, 0, 0));
   color: black;
   vertical-align: center;
@@ -335,9 +322,38 @@ input[type="number"] {
 }
 
 .description {
-  text-align: center;
+  margin-top: 20px;
+  text-align: start;
   width: 80%;
   max-width: 1000px;
+
+  &.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-bottom-color: #c40a2f;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes transition {
@@ -395,16 +411,7 @@ input[type="number"] {
   width: 20px;
   height: 35px;
   border-radius: 7px;
-  background: linear-gradient(
-    to top,
-    #881b1b,
-    #881b1b,
-    #881b1b,
-    #881b1b,
-    #881b1b,
-    #ca474a,
-    #fa6b6e
-  );
+  background: linear-gradient(to top, #881b1b, #881b1b, #881b1b, #881b1b, #881b1b, #ca474a, #fa6b6e);
   margin-bottom: 10px;
   transform: skew(20deg);
   margin-top: -32px;
