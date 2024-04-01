@@ -141,7 +141,7 @@
       </p>
       <p class="description">
         This is a simple API project that displays statistics of theatrical film releases for the desired input year for the first 10000
-        movies sorted by descending popularity due to changes to the public API limits. The data presented are borrowed from
+        movies sorted by descending popularity due to the API service limits. The data presented are borrowed from
         <a href="https://developers.themoviedb.org/" target="_blank" rel="noopener noreferrer">The Movie Database.</a>
       </p>
       <p class="description">
