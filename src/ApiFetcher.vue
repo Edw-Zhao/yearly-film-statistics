@@ -51,7 +51,7 @@ export default {
     // themoviedb API has changed its max page count query and rate limits
     for (let i = 1; totalPagesCount > 500 ? i <= 500 : i <= totalPagesCount; i++) {
       if (i < 500 && i % 50 === 0) {
-        await new Promise((resolve) => setTimeout(resolve, 1100));
+        await new Promise((resolve) => setTimeout(resolve, 1175));
       }
 
       axios

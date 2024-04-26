@@ -24,6 +24,7 @@
               yearInput = readYearInput;
               gotFilmResults = false;
               wrongInput = false;
+              apiFetcherKey += 1;
             } else {
               wrongInput = true;
             }
@@ -38,6 +39,7 @@
               yearInput = readYearInput;
               gotFilmResults = false;
               wrongInput = false;
+              apiFetcherKey += 1;
             } else {
               wrongInput = true;
             }
@@ -122,6 +124,7 @@
       v-bind:gotFilmResults="gotFilmResults"
       v-if="yearInput"
       @update-gotFilmResults="handleUpdateGotFilmResults"
+      :key="apiFetcherKey"
     />
     <div
       class="info"
@@ -177,6 +180,7 @@ export default {
       wrongInput: false,
       showEmail: false,
       gotFilmResults: false,
+      apiFetcherKey: "api-fetcher-key",
     };
   },
   methods: {
